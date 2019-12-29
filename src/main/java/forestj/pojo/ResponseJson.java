@@ -9,7 +9,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseJson {
+public class ResponseJson<T> {
     private int code;
-    private Object lastUpdateTime;
+    private String messege;
+    private T data;
 }

@@ -31,15 +31,22 @@ public class WeatherController {
 
     @RequestMapping("/getUpdateTime")
     public String getTime(){
-        return JSONObject.toJSONString(context.getAttribute("updateTime").toString());
+        ResponseJson<String> ret=new ResponseJson<>();
+        if(context.getAttribute("updateTime")!=null){
+            ret.setCode(200);
+            ret.setData(context.getAttribute("updateTime").toString());
+        }
+        return JSONObject.toJSONString(ret);
     }
 
     @RequestMapping("/updateWeather")
     public String UpdateWeather(){
-        ResponseJson ret=null;
+        ResponseJson<String> ret=new ResponseJson<>();
         //时间是否大于5分钟
         if(System.currentTimeMillis()-((Date)context.getAttribute("updateTime")).getTime()<1000*300){
-            ret=new ResponseJson(300,((Date)context.getAttribute("updateTime")).toString());
+            ret.setCode(300);
+            ret.setMessege("两次修改间隔时间过短");
+            ret.setData(((Date)context.getAttribute("updateTime")).toString());
             return JSONObject.toJSONString(ret);
         }
         context.setAttribute("updateTime",new Date(System.currentTimeMillis()));
@@ -55,17 +62,24 @@ public class WeatherController {
         }
         //删除过期数据
         weatherService.deleteOverdueWeather(new Date(System.currentTimeMillis()-24*3600*1000));
-        ret=new ResponseJson(200,((Date)context.getAttribute("updateTime")).toString());
+        ret.setCode(200);
+        ret.setData(((Date)context.getAttribute("updateTime")).toString());
         return JSONObject.toJSONString(ret);
     }
 
     @RequestMapping("/queryWeather")
     public String getWeather(String cityName){
-        System.out.println(cityName);
+//        System.out.println(cityName);
+        ResponseJson<List<Weather>> ret=new ResponseJson<>();
         List<Weather> weathers = weatherService.getWeatherByName(cityName);
         if(weathers==null||weathers.size()==0){
-            return "";
+            ret.setCode(301);
+//            ret.setData(weathers);
         }
-        else return JSONArray.toJSONStringWithDateFormat(weathers, "yyyy-MM-dd");
+        else{
+            ret.setCode(200);
+            ret.setData(weathers);
+        }
+        return JSONArray.toJSONStringWithDateFormat(ret, "yyyy-MM-dd");
     }
 }
