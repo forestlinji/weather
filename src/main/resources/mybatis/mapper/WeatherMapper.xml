@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="forestj.mapper.WeatherMapper">
-    <resultMap id="weather" type="Weather">
-        <id property="cityName" column="city_name"/>
-        <id property="date" column="date"/>
-    </resultMap>
+<!--    <resultMap id="weather" type="Weather">-->
+<!--        <id property="cityName" column="city_name"/>-->
+<!--        <id property="date" column="date"/>-->
+<!--    </resultMap>-->
     <select id="getWeatherByName" resultType="weather">
-        select * from weather where city_name like CONCAT('%',#{name},'%')
+        SELECT * FROM weather WHERE city_name LIKE CONCAT('%',#{name},'%')
     </select>
 
     <insert id="updateWeather" parameterType="weather">
@@ -19,6 +19,6 @@
     </insert>
 
     <delete id="deleteOverdueWeather">
-        delete from weather where `date` &lt; #{date}
+        DELETE FROM weather WHERE `date` &lt; #{date}
     </delete>
 </mapper>

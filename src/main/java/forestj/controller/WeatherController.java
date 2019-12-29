@@ -2,6 +2,9 @@ package forestj.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import forestj.mapper.CityMapper;
 import forestj.mapper.WeatherMapper;
 import forestj.pojo.City;
@@ -30,24 +33,24 @@ public class WeatherController {
     private ServletContext context;
 
     @RequestMapping("/getUpdateTime")
-    public String getTime(){
+    public ResponseJson<String> getTime(){
         ResponseJson<String> ret=new ResponseJson<>();
         if(context.getAttribute("updateTime")!=null){
             ret.setCode(200);
             ret.setData(context.getAttribute("updateTime").toString());
         }
-        return JSONObject.toJSONString(ret);
+        return ret;
     }
 
     @RequestMapping("/updateWeather")
-    public String UpdateWeather(){
+    public ResponseJson<String> UpdateWeather(){
         ResponseJson<String> ret=new ResponseJson<>();
         //时间是否大于5分钟
         if(System.currentTimeMillis()-((Date)context.getAttribute("updateTime")).getTime()<1000*300){
             ret.setCode(300);
             ret.setMessege("两次修改间隔时间过短");
             ret.setData(((Date)context.getAttribute("updateTime")).toString());
-            return JSONObject.toJSONString(ret);
+            return ret;
         }
         context.setAttribute("updateTime",new Date(System.currentTimeMillis()));
         //调用远端接口并更新数据库
@@ -64,11 +67,11 @@ public class WeatherController {
         weatherService.deleteOverdueWeather(new Date(System.currentTimeMillis()-24*3600*1000));
         ret.setCode(200);
         ret.setData(((Date)context.getAttribute("updateTime")).toString());
-        return JSONObject.toJSONString(ret);
+        return ret;
     }
 
     @RequestMapping("/queryWeather")
-    public String getWeather(String cityName){
+    public ResponseJson<List<Weather>> getWeather(String cityName){
 //        System.out.println(cityName);
         ResponseJson<List<Weather>> ret=new ResponseJson<>();
         List<Weather> weathers = weatherService.getWeatherByName(cityName);
@@ -80,6 +83,6 @@ public class WeatherController {
             ret.setCode(200);
             ret.setData(weathers);
         }
-        return JSONArray.toJSONStringWithDateFormat(ret, "yyyy-MM-dd");
+        return ret;
     }
 }
