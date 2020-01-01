@@ -1,12 +1,6 @@
 package forestj.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import forestj.mapper.CityMapper;
-import forestj.mapper.WeatherMapper;
 import forestj.pojo.City;
 import forestj.pojo.ResponseJson;
 import forestj.pojo.Weather;
@@ -48,7 +42,7 @@ public class WeatherController {
         //时间是否大于5分钟
         if(System.currentTimeMillis()-((Date)context.getAttribute("updateTime")).getTime()<1000*300){
             ret.setCode(300);
-            ret.setMessege("两次修改间隔时间过短");
+            ret.setMessage("两次修改间隔时间过短");
             ret.setData(((Date)context.getAttribute("updateTime")).toString());
             return ret;
         }

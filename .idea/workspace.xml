@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d223a67f-718d-4ca8-9379-f8b13a19de19" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jdbc_2_2_2_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_2_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_jdbc_1_1_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_relational_1_1_3_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/forestj/controller/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forestj/controller/WeatherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/forestj/pojo/ResponseJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forestj/pojo/ResponseJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/forestj/pojo/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forestj/pojo/Weather.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,6 +146,11 @@
       <workItem from="1577600705277" duration="892000" />
       <workItem from="1577601688644" duration="510000" />
       <workItem from="1577602795995" duration="152000" />
+      <workItem from="1577619781413" duration="169000" />
+      <workItem from="1577620822266" duration="326000" />
+      <workItem from="1577628920600" duration="50000" />
+      <workItem from="1577666976171" duration="64000" />
+      <workItem from="1577861529867" duration="30000" />
     </task>
     <servers />
   </component>
