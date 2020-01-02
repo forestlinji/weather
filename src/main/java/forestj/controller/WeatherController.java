@@ -30,7 +30,7 @@ public class WeatherController {
     public ResponseJson<String> getTime(){
         ResponseJson<String> ret=new ResponseJson<>();
         if(context.getAttribute("updateTime")!=null){
-            ret.setCode(200);
+            ret.setStatus(200);
             ret.setData(context.getAttribute("updateTime").toString());
         }
         return ret;
@@ -41,7 +41,7 @@ public class WeatherController {
         ResponseJson<String> ret=new ResponseJson<>();
         //时间是否大于5分钟
         if(System.currentTimeMillis()-((Date)context.getAttribute("updateTime")).getTime()<1000*300){
-            ret.setCode(300);
+            ret.setStatus(300);
             ret.setMessage("两次修改间隔时间过短");
             ret.setData(((Date)context.getAttribute("updateTime")).toString());
             return ret;
@@ -59,7 +59,7 @@ public class WeatherController {
         }
         //删除过期数据
         weatherService.deleteOverdueWeather(new Date(System.currentTimeMillis()-24*3600*1000));
-        ret.setCode(200);
+        ret.setStatus(200);
         ret.setData(((Date)context.getAttribute("updateTime")).toString());
         return ret;
     }
@@ -70,11 +70,26 @@ public class WeatherController {
         ResponseJson<List<Weather>> ret=new ResponseJson<>();
         List<Weather> weathers = weatherService.getWeatherByName(cityName);
         if(weathers==null||weathers.size()==0){
-            ret.setCode(301);
+            ret.setStatus(301);
 //            ret.setData(weathers);
         }
         else{
-            ret.setCode(200);
+            ret.setStatus(200);
+            ret.setData(weathers);
+        }
+        return ret;
+    }
+
+    @RequestMapping("/queryall")
+    public ResponseJson<List<Weather>> getAllWeather(){
+        ResponseJson<List<Weather>> ret=new ResponseJson<>();
+        List<Weather> weathers = weatherService.getAllWeather();
+        if(weathers==null||weathers.size()==0){
+            ret.setStatus(301);
+//            ret.setData(weathers);
+        }
+        else{
+            ret.setStatus(200);
             ret.setData(weathers);
         }
         return ret;

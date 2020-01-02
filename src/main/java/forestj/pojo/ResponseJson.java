@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseJson<T> {
-    private int code;
+    private int status;
     private String message;
     private T data;
 }

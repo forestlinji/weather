@@ -11,6 +11,10 @@
         SELECT * FROM weather WHERE city_name LIKE CONCAT('%',#{name},'%')
     </select>
 
+    <select id="getAllWeather" resultType="weather">
+        SELECT * FROM weather
+    </select>
+
     <insert id="updateWeather" parameterType="weather">
         INSERT INTO `weather`(`city_name`,`date`,dayweather,daytemp,daywind,daypower,nightweather,nighttemp,nightwind,nightpower)
         VALUES(#{cityName},#{date},#{dayweather},#{daytemp},#{daywind},#{daypower},#{nightweather},#{nighttemp},#{nightwind},#{nightpower})

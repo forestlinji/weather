@@ -26,4 +26,9 @@ public class WeatherServiceImpl implements WeatherService{
     public int deleteOverdueWeather(Date date) {
         return weatherMapper.deleteOverdueWeather(date);
     }
+
+    @Override
+    public List<Weather> getAllWeather() {
+        return weatherMapper.getAllWeather();
+    }
 }
