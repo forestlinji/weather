@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>西二第三轮作业:城市天气查询</title>
+        <script src="vue.js"></script>
+        <script src="axios.js"></script>
+        <link rel="stylesheet" href="bootstrap.css">
+    </head>
+
+    <body>
+        <div id="app">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">城市天气查询</h3>
+                </div>
+                <div class="panel-body form-inline">
+                    <label>
+                        城市名:
+                        <input type="text" class="form-control" id="search" v-model='cityname' @keyup.enter="query()">
+                        <input type="button" value="查询" class="btn btn-primary" @click="query()" >
+                    </label>
+                    <input type="button" value="查询所有城市" class="btn btn-primary" @click="queryall()" >
+                    <label>
+                        <input type="button" value="更新数据库数据" class="btn btn-primary" :disabled='updating' @click="updateWeather()">
+                    </label>
+                    最后更新时间:{{lastUpdateTime}}
+                </div>
+            </div>
+
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>城市名</th>
+                        <th>日期</th>
+                        <th>白天天气</th>
+                        <th>白天温度</th>
+                        <th>白天风向</th>
+                        <th>白天风力</th>
+                        <th>晚上天气</th>
+                        <th>晚上温度</th>
+                        <th>晚上风向</th>
+                        <th>晚上风力</th>
+                        <!-- <th>Ctime</th> -->
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in weatherList">
+                        <td>{{ item.cityName }}</td>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.dayweather }}</td>
+                        <td>{{ item.daytemp }}</td>
+                        <td>{{ item.daywind }}</td>
+                        <td>{{ item.daypower }}</td>
+                        <td>{{ item.nightweather }}</td>
+                        <td>{{ item.nighttemp }}</td>
+                        <td>{{ item.nightwind }}</td>
+                        <td>{{ item.nightpower }}</td>
+                        <!-- <td>{{ item.ctime }}</td> -->
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            var baseurl='http://localhost:8080';
+            var vm = new Vue({
+                el: '#app',
+                mounted() {
+                    var url=baseurl+'/getUpdateTime'
+                    var self=this
+                    axios.get(url).then(function(data){
+                        self.lastUpdateTime=data.data.data
+                    })
+                },
+                data: {
+                    cityname: '',
+                    keywords: '',
+                    updating:false,
+                    lastUpdateTime:'',
+                    weatherList: '',
+                },
+                methods: {
+                    query() {
+                        adcode = -1
+                        if (this.cityname.length == 0) {
+                            alert('城市名不能为空')
+                            return;
+                        } 
+                        var urls = baseurl+'/queryWeather?cityName='+this.cityname
+                        var self = this
+                        axios.get(urls).then(function (data) {
+                            if(data.data.status==200)
+                                self.weatherList = data.data.data;         
+                            else alert('没有查询到这个城市')
+                            // console.log(data.data);
+                            // console.log(weatherList);
+                        })
+                        // console.log(this.weatherList)
+                    },
+                    queryall(){
+                        var urls = baseurl+'/queryall'
+                        var self=this
+                        axios.get(urls).then(function(data){
+                            if(data.data.status==200)
+                                self.weatherList = data.data.data;         
+                            else alert('查询失败')
+                        })
+                    },
+                    updateWeather(){  
+                        var self = this
+                        this.updating=true
+                        axios.get(baseurl+'/updateWeather').then(function(data){
+                            var ret=data.data;
+                            if(ret.status==200){
+                                self.lastUpdateTime=ret.data
+                            }
+                            else if(ret.code==300){
+                                alert("更新过于频繁，请至少间隔5分钟进行一次更新");
+                                self.lastUpdateTime=ret.data
+                            }
+                            self.updating=false   
+                        })
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

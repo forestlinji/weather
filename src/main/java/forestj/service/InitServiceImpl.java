@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletContext;
 import java.util.Date;
 
+/**
+ * 服务启动时自动更新数据
+ */
 @Component
 @Order(2)
 public class InitServiceImpl implements CommandLineRunner {

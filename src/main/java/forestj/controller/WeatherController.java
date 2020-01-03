@@ -26,6 +26,9 @@ public class WeatherController {
     @Autowired
     private ServletContext context;
 
+    /**
+     * 获取最后更新数据的时间
+     */
     @RequestMapping("/getUpdateTime")
     public ResponseJson<String> getTime(){
         ResponseJson<String> ret=new ResponseJson<>();
@@ -36,10 +39,13 @@ public class WeatherController {
         return ret;
     }
 
+    /**
+     * 更新天气数据
+     */
     @RequestMapping("/updateWeather")
     public ResponseJson<String> UpdateWeather(){
         ResponseJson<String> ret=new ResponseJson<>();
-        //时间是否大于5分钟
+        //监测离最后一次更新时间是否超过5分钟，若不超过，则不进行更新
         if(System.currentTimeMillis()-((Date)context.getAttribute("updateTime")).getTime()<1000*300){
             ret.setStatus(300);
             ret.setMessage("两次修改间隔时间过短");
@@ -64,14 +70,16 @@ public class WeatherController {
         return ret;
     }
 
+    /**
+     * 根据城市名查询天气
+     * @param cityName 城市名
+     */
     @RequestMapping("/queryWeather")
     public ResponseJson<List<Weather>> getWeather(String cityName){
-//        System.out.println(cityName);
         ResponseJson<List<Weather>> ret=new ResponseJson<>();
         List<Weather> weathers = weatherService.getWeatherByName(cityName);
-        if(weathers==null||weathers.size()==0){
+        if(weathers==null||weathers.size()==0){  //未查询到对应城市
             ret.setStatus(301);
-//            ret.setData(weathers);
         }
         else{
             ret.setStatus(200);
@@ -80,6 +88,9 @@ public class WeatherController {
         return ret;
     }
 
+    /**
+     * 查询所有城市的天气
+     */
     @RequestMapping("/queryall")
     public ResponseJson<List<Weather>> getAllWeather(){
         ResponseJson<List<Weather>> ret=new ResponseJson<>();
