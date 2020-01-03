@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d223a67f-718d-4ca8-9379-f8b13a19de19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/sql/city.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/weather.sql" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/forestj/third/MapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/前端代码/axios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/前端代码/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/前端代码/vue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/前端代码/weather.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/forestj/controller/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/forestj/controller/WeatherController.java" afterDir="false" />
@@ -47,7 +53,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UgUqmx9FjcNtDITPiyT1vPnD5c" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
@@ -166,7 +174,7 @@
       <workItem from="1577968718596" duration="776000" />
       <workItem from="1578018523468" duration="959000" />
       <workItem from="1578020014597" duration="1098000" />
-      <workItem from="1578022109659" duration="2395000" />
+      <workItem from="1578022109659" duration="2740000" />
     </task>
     <servers />
   </component>
@@ -185,5 +193,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

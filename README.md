@@ -27,6 +27,7 @@
 项目代码结构(一些常用结构略)
 - pojo:实体类
 - mapper:映射器
+    - 对应的xml在src/main/resources/mybatis/mapper目录下
 - service：
     - InitServiceImpl 项目启动时自动调用，更新数据
     - TimeTaskServiceImpl 定时任务，每天定时更新数据库
