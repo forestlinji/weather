@@ -7,7 +7,7 @@
 项目展示地址:http://106.14.209.11/weather/
 
 项目所用技术：
-- 后端：maven + springboot + mybatis + mysql + httpclients(调用远程接口) + fastjson(解析json) + lombok(简化实体类的编写)(最后这俩好像争议挺大的，但用起来真爽)
+- 后端：maven + springboot + mybatis + mysql + httpclients(调用远程接口) + fastjson(解析json) + lombok(简化实体类的编写)
 - 前端：vue(渲染页面) + axios(前后端通信) + bootstrap(ui)
 
 本项目实现了调用远程接口更新数据库天气数据，并且在前端实现了查询和更新数据功能。
