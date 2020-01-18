@@ -4,7 +4,7 @@
 
 这是一个基于springboot+vue的前后端分离项目(其实菜鸡完全不会写前端，基本都是copy的模板)，前后端直接采用ajax进行通信，后端部署在tomcat上，前端可以部署在nginx上
 
-项目展示地址:http://106.14.209.11/weather/
+
 
 项目所用技术：
 - 后端：maven + springboot + mybatis + mysql + httpclients(调用远程接口) + fastjson(解析json) + lombok(简化实体类的编写)
